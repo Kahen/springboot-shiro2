@@ -424,22 +424,22 @@ http://localhost:8080/login/login?username=zhangsan&password=123
 
 会得到返回错误的json
 
-![Snipaste_2020-02-01_12-03-44](E:\Legend\MarkDown\images\Snipaste_2020-02-01_12-03-44.png)
+![Snipaste_2020-02-01_12-03-44](https://github.com/Kahen/springboot-shiro2/blob/master/images/Snipaste_2020-02-01_12-03-44.png)
 
 访问查询用户
 
 http://localhost:8080/user/query
 
-![image-20200201123122104](E:\Legend\MarkDown\images\image-20200201123122104.png)
+![image-20200201123122104]((https://github.com/Kahen/springboot-shiro2/blob/master/images/image-20200201123122104.png)
 
 访问正确的用户
 
 http://localhost:8080/login/login?username=zhangsan&password=123456
 
-![image-20200201123322723](E:\Legend\MarkDown\images\image-20200201123322723.png)
+![image-20200201123322723]((https://github.com/Kahen/springboot-shiro2/blob/master/images/image-20200201123322723.png)
 
 重新访问http://localhost:8080/user/query
 
-![image-20200201123901961](E:\Legend\MarkDown\images\image-20200201123901961.png)
+![image-20200201123901961]((https://github.com/Kahen/springboot-shiro2/blob/master/images/image-20200201123901961.png)
 
-![image-20200201124018987](E:\Legend\MarkDown\images\image-20200201124018987.png)
+![image-20200201124018987]((https://github.com/Kahen/springboot-shiro2/blob/master/images/image-20200201124018987.png)
