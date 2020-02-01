@@ -1,0 +1,43 @@
+server:
+  port: 8080
+spring:
+  datasource: #数据源配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lims?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: 888888
+    druid:
+      max-active: 10
+      min-idle: 5
+      max-wait: 5000
+      initial-size: 5
+      validation-query: select 1
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        allow:
+        deny:
+        url-pattern: "/druid/*"
+  thymeleaf:
+    cache: false
+#mybatis的配置
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations:
+    - classpath:mapper/*Mapper.xml
+#shiro 的配置
+shiro:
+  hash-algorithm-name: md5
+  hash-iterations: 2
+  login-url: /login.html
+  unauthorized-url: /unauthorized.html
+  anon-urls:
+    - /index.html/*
+    - /login.html/*
+    - /login/toLogin*
+    - /login/login*
+  logout-url: /login/logout*
+  authc-urls:
+    - /**

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.PermissionMapper">
+	<resultMap id="BaseResultMap"
+		type="com.example.domain.Permission">
+		<id column="perid" jdbcType="INTEGER" property="perid" />
+		<result column="pername" jdbcType="VARCHAR" property="pername" />
+		<result column="percode" jdbcType="VARCHAR" property="percode" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		perid, pername, percode
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from permission
+		where perid = #{perid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from permission
+		where perid = #{perid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.example.domain.Permission">
+		insert into permission (perid, pername, percode
+		)
+		values (#{perid,jdbcType=INTEGER}, #{pername,jdbcType=VARCHAR},
+		#{percode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.example.domain.Permission">
+		insert into permission
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="perid != null">
+				perid,
+			</if>
+			<if test="pername != null">
+				pername,
+			</if>
+			<if test="percode != null">
+				percode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="perid != null">
+				#{perid,jdbcType=INTEGER},
+			</if>
+			<if test="pername != null">
+				#{pername,jdbcType=VARCHAR},
+			</if>
+			<if test="percode != null">
+				#{percode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.example.domain.Permission">
+		update permission
+		<set>
+			<if test="pername != null">
+				pername = #{pername,jdbcType=VARCHAR},
+			</if>
+			<if test="percode != null">
+				percode = #{percode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where perid = #{perid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.example.domain.Permission">
+		update permission
+		set pername = #{pername,jdbcType=VARCHAR},
+		percode = #{percode,jdbcType=VARCHAR}
+		where perid = #{perid,jdbcType=INTEGER}
+	</update>
+
+	<!-- 根据用户ID查询权限 -->
+	<select id="queryPermissionByUserId" resultMap="BaseResultMap">
+		select distinct t1.* from permission t1 inner join role_permission t2 inner
+		join user_role t3
+		on(t1.perid=t2.perid and t2.roleid=t3.roleid) where t3.userid=#{userId}
+	</select>
+</mapper>
